@@ -9,7 +9,6 @@ import com.mongodb.client.MongoDatabase;
 
 public class test {
 
-
 	public static void main(String[] args) {
 
 		String user = "admin";
@@ -20,6 +19,7 @@ public class test {
 		String uriComplete= "mongodb+srv://"+user+":"+pass+"@"+host+"/"+dbName+"?retryWrites=true&w=majority";
 
 		//Conecction
+
 		MongoClientURI uri = new MongoClientURI(uriComplete);
 		MongoClient mongo = new MongoClient(uri);
 		MongoDatabase mongoDatabase = mongo.getDatabase("dbTEST");
