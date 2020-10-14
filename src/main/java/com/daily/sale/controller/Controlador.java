@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.daily.sale.interfaceService.IPersonaService;
+import com.daily.sale.modelo.Lots;
 import com.daily.sale.modelo.Persona;
 import com.daily.sale.modelo.User;
+import com.daily.sale.service.LotService;
 import com.daily.sale.service.UserService;
 
 @Controller
@@ -26,6 +28,9 @@ public class Controlador {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private LotService lotService;
 
 	@GetMapping("/")
 	public String index(Model model) {
@@ -63,22 +68,22 @@ public class Controlador {
 	
 	@GetMapping("/reservados")
 	public String reservados(Model model) {
-		List<Persona> personas = service.listar();
-		model.addAttribute("personas", personas);
+		List<Lots> reservedLots = lotService.getReserveds();
+		model.addAttribute("reservedLots", reservedLots);
 		return "reservados";
 	}
 
 	@GetMapping("/vendidos")
 	public String vendidos(Model model) {
-		List<Persona> personas = service.listar();
-		model.addAttribute("personas", personas);
+		List<Lots> soldLots = lotService.getSolds();
+		model.addAttribute("soldLots", soldLots);
 		return "vendidos";
 	}
 	
 	@GetMapping("/disponibles")
 	public String disponibles(Model model) {
-		List<Persona> personas = service.listar();
-		model.addAttribute("personas", personas);
+		List<Lots> availableLots = lotService.getAvailables();
+		model.addAttribute("availableLots", availableLots);
 		return "disponibles";
 	}
 	

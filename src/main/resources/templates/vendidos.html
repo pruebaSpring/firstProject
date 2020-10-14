@@ -81,7 +81,7 @@
                     </h2>
                     <div class="row">
 	                    <table>
-	                        <tr th:each="persona : ${personas}">
+	                        <tr th:each="soldLot : ${soldLots}">
 		                      <div class="col-md-2">
 		                        <div class="color-swatches">
 		                          <div class="swatches">
@@ -90,8 +90,9 @@
 		                              <div style="background-color:#E9573F" class="pull-right dark"></div>
 		                            </div>
 		                            <div class="infos">
-		                              <h4 th:text="${persona.name}"></h4>
-		                              <p th:text="${persona.id} + ${persona.telefono}"></p>
+		                              <h4 th:text="${soldLot.amount}"></h4>
+		                              <p th:text="${soldLot.measure}"></p>
+		                              <p th:text="${soldLot.location}"></p>
 		                            </div>
 		                          </div>
 		                        </div>
