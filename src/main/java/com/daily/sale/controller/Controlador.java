@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.daily.sale.interfaceService.IPersonaService;
 import com.daily.sale.modelo.Lots;
@@ -62,32 +63,36 @@ public class Controlador {
 	}
 	
 	@GetMapping("/index")
-	public String dashboard(Model model) {
+	public String dashboard(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
 		List<List<Lots>> lots = lotService.getAll();
 		model.addAttribute("reservedLots", lots.get(0));
 		model.addAttribute("soldLots", lots.get(1));
 		model.addAttribute("availableLots", lots.get(2));
+		model.addAttribute("name", name);
 		return "index";
 	}
 	
 	@GetMapping("/reservados")
-	public String reservados(Model model) {
+	public String reservados(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
 		List<Lots> reservedLots = lotService.getReserveds();
 		model.addAttribute("reservedLots", reservedLots);
+		model.addAttribute("name", name);
 		return "reservados";
 	}
 
 	@GetMapping("/vendidos")
-	public String vendidos(Model model) {
+	public String vendidos(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
 		List<Lots> soldLots = lotService.getSolds();
 		model.addAttribute("soldLots", soldLots);
+		model.addAttribute("name", name);
 		return "vendidos";
 	}
 	
 	@GetMapping("/disponibles")
-	public String disponibles(Model model) {
+	public String disponibles(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
 		List<Lots> availableLots = lotService.getAvailables();
 		model.addAttribute("availableLots", availableLots);
+		model.addAttribute("name", name);
 		return "disponibles";
 	}
 	

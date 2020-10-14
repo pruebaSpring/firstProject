@@ -29,7 +29,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">Bootflat-Admin</a>
+            <a href="#" class="navbar-brand" th:text="${name}"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,14 +39,12 @@
               <li class="active"><a href="index.html">Documentation</a></li>
               <!-- <li class="disabled"><a href="#">Link</a></li> -->
               <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Silverbux <b class="caret"></b></a>
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#" th:text="${name}">Silverbux <b class="caret"></b></a>
                 <ul role="menu" class="dropdown-menu">
                   <li class="dropdown-header">Setting</li>
-                  <li><a href="#">Action</a></li>
                   <li class="divider"></li>
-                  <li class="active"><a href="#">Separated link</a></li>
+                  <li class="active"><a href="/signOut">Signout</a></li>
                   <li class="divider"></li>
-                  <li class="disabled"><a href="#">Signout</a></li>
                 </ul>
               </li>
             </ul>
@@ -62,10 +60,10 @@
             <ul class="list-group panel">
                 <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>SIDE PANEL</b></li>
                 <li class="list-group-item"><input type="text" class="form-control search-query" placeholder="Search Something"></li>
-                <li class="list-group-item"><a th:href="@{/index}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
-                <li class="list-group-item"><a th:href="@{/reservados}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Resevados </a></li>
-                <li class="list-group-item"><a th:href="@{/vendidos}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
-                <li class="list-group-item"><a th:href="@{/disponibles}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
+                <li class="list-group-item"><a th:href="@{/index?name=} + ${name}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
+                <li class="list-group-item"><a th:href="@{/reservados?name=} + ${name}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a></li>
+                <li class="list-group-item"><a th:href="@{/vendidos?name=} + ${name}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
+                <li class="list-group-item"><a th:href="@{/disponibles?name=} + ${name}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
                 <li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>
               </ul>
           </div>
