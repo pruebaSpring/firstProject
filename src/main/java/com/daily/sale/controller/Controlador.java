@@ -18,6 +18,8 @@ import com.daily.sale.service.UserService;
 @Controller
 @RequestMapping
 public class Controlador {
+	
+	private static User user;
 
 	@Autowired
 	private IPersonaService service;
@@ -36,8 +38,10 @@ public class Controlador {
 //	public String login(@ModelAttribute(value="user") User user) {
 	public String login(Model model, String name, String password) {
 		if(userService.identifier(name, password)) {
-			User user = new User(name, password);
+			user = new User(name, password);
 			model.addAttribute("name", user.getName());
+			List<Persona> personas = service.listar();
+			model.addAttribute("personas", personas);
 			return "index";
 		}
 		model.addAttribute("invalidCredentials", true);
@@ -46,6 +50,7 @@ public class Controlador {
 	
 	@GetMapping("/signOut")
 	public String signOut() {
+		user = null;
 		return "login";
 	}
 	
