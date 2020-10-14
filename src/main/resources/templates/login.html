@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Bootflat-Admin Template</title>
@@ -27,14 +27,15 @@
   </head>
   <body>
     <div class="container">
-      <form class="form-signin" role="form" action="index.html">
-        <h3 class="form-signin-heading">Please sign in</h3>
+    	
+      <form class="form-signin" role="form" action="/login" method="post">
+        <h3 class="form-signin-heading">Ingresa a tu cuenta:</h3>
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i>
             </div>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
+            <input type="text" class="form-control" name="name" placeholder="Nombre de Usuario" autocomplete="off" required="required"/>
           </div>
         </div>
 
@@ -43,14 +44,16 @@
             <div class="input-group-addon">
               <i class=" glyphicon glyphicon-lock "></i>
             </div>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
+            <input type="password" class="form-control" name="password" placeholder="Contraseña" autocomplete="off" required="required"/>
           </div>
         </div>
 
-        <label class="checkbox">
+		<p th:if="${invalidCredentials}" style="color:red">Nombre de usuario o contraseña ingresada es incorrecta</p>
+		
+        <!--<label class="checkbox">
           <input type="checkbox" value="remember-me"> &nbsp Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </label>-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
       </form>
 
     </div>

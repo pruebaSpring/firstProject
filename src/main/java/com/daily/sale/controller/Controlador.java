@@ -1,23 +1,19 @@
 package com.daily.sale.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.daily.sale.interfaceService.IPersonaService;
 import com.daily.sale.modelo.Persona;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
+import com.daily.sale.modelo.User;
+import com.daily.sale.service.UserService;
 
 @Controller
 @RequestMapping
@@ -26,8 +22,35 @@ public class Controlador {
 	@Autowired
 	private IPersonaService service;
 	
-	@GetMapping("/index")
+	@Autowired
+	private UserService userService;
+
+	@GetMapping("/")
 	public String index(Model model) {
+//		List<Persona> personas = service.listar();
+//		model.addAttribute("personas", personas);
+		return "login";
+	}
+	
+	@PostMapping("/login")
+//	public String login(@ModelAttribute(value="user") User user) {
+	public String login(Model model, String name, String password) {
+		if(userService.identifier(name, password)) {
+			User user = new User(name, password);
+			model.addAttribute("name", user.getName());
+			return "index";
+		}
+		model.addAttribute("invalidCredentials", true);
+		return "login";
+	}
+	
+	@GetMapping("/signOut")
+	public String signOut() {
+		return "login";
+	}
+	
+	@GetMapping("/index")
+	public String dashboard(Model model) {
 		List<Persona> personas = service.listar();
 		model.addAttribute("personas", personas);
 		return "index";
