@@ -45,8 +45,10 @@ public class Controlador {
 		if(userService.identifier(name, password)) {
 			user = new User(name, password);
 			model.addAttribute("name", user.getName());
-			List<Persona> personas = service.listar();
-			model.addAttribute("personas", personas);
+			List<List<Lots>> lots = lotService.getAll();
+			model.addAttribute("reservedLots", lots.get(0));
+			model.addAttribute("soldLots", lots.get(1));
+			model.addAttribute("availableLots", lots.get(2));
 			return "index";
 		}
 		model.addAttribute("invalidCredentials", true);
@@ -61,8 +63,10 @@ public class Controlador {
 	
 	@GetMapping("/index")
 	public String dashboard(Model model) {
-		List<Persona> personas = service.listar();
-		model.addAttribute("personas", personas);
+		List<List<Lots>> lots = lotService.getAll();
+		model.addAttribute("reservedLots", lots.get(0));
+		model.addAttribute("soldLots", lots.get(1));
+		model.addAttribute("availableLots", lots.get(2));
 		return "index";
 	}
 	

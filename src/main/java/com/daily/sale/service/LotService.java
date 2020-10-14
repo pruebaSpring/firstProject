@@ -18,6 +18,57 @@ import com.mongodb.client.model.Filters;
 @Service
 public class LotService {
 
+	public List<List<Lots>> getAll() {
+		List<Lots> reservedList = new ArrayList<>();
+		List<Lots> soldList = new ArrayList<>();
+		List<Lots> availableList = new ArrayList<>();
+		String user = "admin";
+		String pass = "qFqW2Xpukwpzb5qg";
+		String host = "clusterspringexample.q1vcv.mongodb.net";
+		String dbName = "dbTEST";
+		String port = "27017";
+		String uriComplete= "mongodb+srv://"+user+":"+pass+"@"+host+"/"+dbName+"?retryWrites=true&w=majority";
+
+		MongoClientURI uri = new MongoClientURI(uriComplete);
+		MongoClient mongo = new MongoClient(uri);
+		MongoDatabase mongoDatabase = mongo.getDatabase("dbTEST");
+		MongoCollection<Document> collection = mongoDatabase.getCollection("LOTS");
+		System.out.println("Connect to database successfully");
+		
+		MongoCursor<Document> result = collection.find().iterator();
+		
+		List<List<Lots>> lots = new ArrayList<>();
+		while (result.hasNext()) {
+			Lots lot = new Lots();
+			Document document = result.next();
+			String status = document.get("Status", new Document()).getString("Status");
+			lot.setAmount(document.get("Information", new Document()).get("Price", new Document()).getDouble("Amount"));
+			lot.setMeasure(document.get("Information", new Document()).getString("Measure"));
+			lot.setLocation(document.get("Information", new Document()).getString("Location"));
+			
+			
+			switch (status) {
+			case "Reserved":
+				reservedList.add(lot);
+				break;
+			case "Sold":
+				soldList.add(lot);
+				break;
+			case "Available":
+				availableList.add(lot);
+				break;
+
+			default:
+				break;
+			}
+		}
+		lots.add(reservedList);
+		lots.add(soldList);
+		lots.add(availableList);
+
+		return lots;
+	}
+
 	public List<Lots> getAvailables() {
 		String user = "admin";
 		String pass = "qFqW2Xpukwpzb5qg";

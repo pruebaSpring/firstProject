@@ -1,9 +1,12 @@
 package com.daily.sale.modelo;
 
+import java.util.List;
+
 public class Lots {
 	private Double amount;
 	private String measure;
 	private String location;
+	private Lots typeLots;
 	
 	public Lots() {
 		
@@ -40,5 +43,14 @@ public class Lots {
 		this.location = location;
 	}
 
+	public Lots getTypeLots() {
+		return typeLots;
+	}
+
+	public void setTypeLots(Lots typeLots) {
+		this.typeLots = typeLots;
+	}
+
+	
 	
 }
