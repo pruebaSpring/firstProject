@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.daily.sale.constants.IDBCollections;
 import com.daily.sale.constants.IDatabases;
+import com.daily.sale.modelo.User;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -15,7 +16,7 @@ import com.mongodb.client.model.Filters;
 @Service
 public class UserService {
 
-	public boolean identifier(String nameUser, String passwordUser, MongoClient mongoClient) {
+	public User identifier(String nameUser, String passwordUser, MongoClient mongoClient) {
 //		String user = "admin";
 //		String pass = "qFqW2Xpukwpzb5qg";
 //		String host = "clusterspringexample.q1vcv.mongodb.net";
@@ -36,9 +37,13 @@ public class UserService {
 		
 		MongoCursor<Document> result = collection.find(filter).iterator();
 		
-		if(result.hasNext())
-			return true;
+		User user = null;
+		if(result.hasNext()) {
+			Document document = result.next();
+			user = new User(document.getString("User"), document.getString("Pass"), document.get("UserType", new Document()).getString("TypeCode"));
+			return user;
+		}
 		
-		return false;
+		return user;
 	}
 }

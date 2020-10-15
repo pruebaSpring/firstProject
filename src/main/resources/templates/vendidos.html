@@ -7,15 +7,15 @@
     <link rel="shortcut icon" href="favicon_16.ico"/>
     <link rel="bookmark" href="favicon_16.ico"/>
     <!-- site css -->
-    <link rel="stylesheet" href="dist/css/site.min.css">
+    <link rel="stylesheet" href="../static/dist/css/site.min.css" th:href="@{/dist/css/site.min.css}">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
+      <script src="../js/html5shiv.js" th:src="@{/js/html5shiv.js}"></script>
+      <script src="../js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
     <![endif]-->
-    <script type="text/javascript" src="dist/js/site.min.js"></script>
+    <script type="text/javascript" src="../static/dist/js/site.min.js" th:src="@{/dist/js/site.min.js}"></script>
   </head>
   <body style="margin:0px; height:100%;">
     <!--nav-->
@@ -148,13 +148,14 @@
             <ul class="list-group panel">
                 <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>SIDE PANEL</b></li>
                 <li class="list-group-item"><input type="text" class="form-control search-query" placeholder="Search Something"></li>
-                <li class="list-group-item"><a th:href="@{/index?name=} + ${name}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
-                <li class="list-group-item"><a th:href="@{/reservados?name=} + ${name}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a></li>
-                <li class="list-group-item active"><a th:href="@{/vendidos?name=} + ${name}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
-                <li class="list-group-item"><a th:href="@{/disponibles?name=} + ${name}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
+                <li class="list-group-item"><a th:href="@{/index/{name}/{type}(name = ${name}, type = ${type})}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
+                <li class="list-group-item"><a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a></li>
+                <li class="list-group-item active"><a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
+                <li class="list-group-item"><a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
                 <!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
               </ul>
           </div>
+          <div id="personModalHolder"/>
           <div class="col-xs-12 col-sm-9 content">
             <div class="panel panel-default">
               <div class="panel-heading">

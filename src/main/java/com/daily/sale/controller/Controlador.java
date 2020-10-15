@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,9 +47,11 @@ public class Controlador {
 	@PostMapping("/login")
 	//	public String login(@ModelAttribute(value="user") User user) {
 	public String login(Model model, String name, String password) {
-		if(userService.identifier(name, password, mongoClient)) {
-			user = new User(name, password);
+		mongoClient = dbService.getMongoClient();
+		user = userService.identifier(name, password, mongoClient);
+		if(user != null) {
 			model.addAttribute("name", user.getName());
+			model.addAttribute("type", user.getType());
 			List<List<Lots>> lots = lotService.getAll(mongoClient);
 			model.addAttribute("reservedLots", lots.get(0));
 			model.addAttribute("soldLots", lots.get(1));
@@ -62,41 +65,54 @@ public class Controlador {
 	@GetMapping("/signOut")
 	public String signOut() {
 		user = null;
+		mongoClient = null;
 		return "login";
 	}
 
-	@GetMapping("/index")
-	public String dashboard(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
+	@GetMapping("/index/{name}/{type}")
+	public String dashboard(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
 		List<List<Lots>> lots = lotService.getAll(mongoClient);
 		model.addAttribute("reservedLots", lots.get(0));
 		model.addAttribute("soldLots", lots.get(1));
 		model.addAttribute("availableLots", lots.get(2));
 		model.addAttribute("name", name);
+		model.addAttribute("type", type);
 		return "index";
 	}
 
-	@GetMapping("/reservados")
-	public String reservados(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
+	@GetMapping("/reservados/{name}/{type}")
+	public String reservados(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
 		List<Lots> reservedLots = lotService.getReserveds(mongoClient);
 		model.addAttribute("reservedLots", reservedLots);
 		model.addAttribute("name", name);
+		model.addAttribute("type", type);
 		return "reservados";
 	}
 
-	@GetMapping("/vendidos")
-	public String vendidos(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
+	@GetMapping("/vendidos/{name}/{type}")
+	public String vendidos(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
 		List<Lots> soldLots = lotService.getSolds(mongoClient);
 		model.addAttribute("soldLots", soldLots);
 		model.addAttribute("name", name);
+		model.addAttribute("type", type);
 		return "vendidos";
 	}
 
-	@GetMapping("/disponibles")
-	public String disponibles(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
+	@GetMapping("/disponibles/{name}/{type}")
+	public String disponibles(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
 		List<Lots> availableLots = lotService.getAvailables(mongoClient);
 		model.addAttribute("availableLots", availableLots);
 		model.addAttribute("name", name);
+		model.addAttribute("type", type);
 		return "disponibles";
+	}
+
+	@GetMapping("/data/{amount}")
+	public String getData(@PathVariable("amount") Double amount, Model model) {
+		List<Lots> availableLots = lotService.getAvailables(mongoClient);
+		model.addAttribute("availableLots", availableLots);
+		model.addAttribute("amount", amount);
+		return "vendidos :: modalContents";
 	}
 
 	@GetMapping("/colors")
