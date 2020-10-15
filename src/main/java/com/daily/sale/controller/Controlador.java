@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.daily.sale.interfaceService.IPersonaService;
 import com.daily.sale.modelo.Lots;
-import com.daily.sale.modelo.Persona;
 import com.daily.sale.modelo.User;
 import com.daily.sale.service.DBService;
 import com.daily.sale.service.LotService;
@@ -27,9 +25,9 @@ public class Controlador {
 
 	@Autowired
 	private DBService dbService;
-	
-	@Autowired
-	private IPersonaService service;
+
+	//	@Autowired
+	//	private IPersonaService service;
 
 	@Autowired
 	private UserService userService;
@@ -103,8 +101,8 @@ public class Controlador {
 
 	@GetMapping("/colors")
 	public String colors(Model model) {
-		List<Persona> personas = service.listar();
-		model.addAttribute("personas", personas);
+		//		List<Persona> personas = service.listar();
+		//		model.addAttribute("personas", personas);
 		return "colors";
 	}
 
