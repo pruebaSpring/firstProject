@@ -14,6 +14,7 @@ import com.daily.sale.interfaceService.IPersonaService;
 import com.daily.sale.modelo.Lots;
 import com.daily.sale.modelo.Persona;
 import com.daily.sale.modelo.User;
+import com.daily.sale.service.DBService;
 import com.daily.sale.service.LotService;
 import com.daily.sale.service.UserService;
 
@@ -22,7 +23,11 @@ import com.daily.sale.service.UserService;
 public class Controlador {
 
 	private static User user;
+	private static com.mongodb.MongoClient mongoClient;
 
+	@Autowired
+	private DBService dbService;
+	
 	@Autowired
 	private IPersonaService service;
 
@@ -34,6 +39,7 @@ public class Controlador {
 
 	@GetMapping("/")
 	public String index(Model model) {
+		mongoClient = dbService.getMongoClient();
 		//		List<Persona> personas = service.listar();
 		//		model.addAttribute("personas", personas);
 		return "login";
@@ -42,10 +48,10 @@ public class Controlador {
 	@PostMapping("/login")
 	//	public String login(@ModelAttribute(value="user") User user) {
 	public String login(Model model, String name, String password) {
-		if(userService.identifier(name, password)) {
+		if(userService.identifier(name, password, mongoClient)) {
 			user = new User(name, password);
 			model.addAttribute("name", user.getName());
-			List<List<Lots>> lots = lotService.getAll();
+			List<List<Lots>> lots = lotService.getAll(mongoClient);
 			model.addAttribute("reservedLots", lots.get(0));
 			model.addAttribute("soldLots", lots.get(1));
 			model.addAttribute("availableLots", lots.get(2));
@@ -63,7 +69,7 @@ public class Controlador {
 
 	@GetMapping("/index")
 	public String dashboard(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
-		List<List<Lots>> lots = lotService.getAll();
+		List<List<Lots>> lots = lotService.getAll(mongoClient);
 		model.addAttribute("reservedLots", lots.get(0));
 		model.addAttribute("soldLots", lots.get(1));
 		model.addAttribute("availableLots", lots.get(2));
@@ -73,7 +79,7 @@ public class Controlador {
 
 	@GetMapping("/reservados")
 	public String reservados(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
-		List<Lots> reservedLots = lotService.getReserveds();
+		List<Lots> reservedLots = lotService.getReserveds(mongoClient);
 		model.addAttribute("reservedLots", reservedLots);
 		model.addAttribute("name", name);
 		return "reservados";
@@ -81,7 +87,7 @@ public class Controlador {
 
 	@GetMapping("/vendidos")
 	public String vendidos(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
-		List<Lots> soldLots = lotService.getSolds();
+		List<Lots> soldLots = lotService.getSolds(mongoClient);
 		model.addAttribute("soldLots", soldLots);
 		model.addAttribute("name", name);
 		return "vendidos";
@@ -89,7 +95,7 @@ public class Controlador {
 
 	@GetMapping("/disponibles")
 	public String disponibles(@RequestParam(defaultValue = "", name = "name", required = false) String name, Model model) {
-		List<Lots> availableLots = lotService.getAvailables();
+		List<Lots> availableLots = lotService.getAvailables(mongoClient);
 		model.addAttribute("availableLots", availableLots);
 		model.addAttribute("name", name);
 		return "disponibles";
