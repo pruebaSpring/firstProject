@@ -59,7 +59,7 @@
             <ul class="list-group panel">
                 <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>SIDE PANEL</b></li>
                 <li class="list-group-item"><input type="text" class="form-control search-query" placeholder="Search Something"></li>
-                <li class="list-group-item"><a th:href="@{/index?name=} + ${name}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
+                <li class="list-group-item active"><a th:href="@{/index?name=} + ${name}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
                 <li class="list-group-item"><a th:href="@{/reservados?name=} + ${name}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a></li>
                 <li class="list-group-item"><a th:href="@{/vendidos?name=} + ${name}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
                 <li class="list-group-item"><a th:href="@{/disponibles?name=} + ${name}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
@@ -74,7 +74,7 @@
               <div class="panel-body">
                   <div class="content-row">
                     <h2 class="content-row-title">Lotes Disponibles
-                      <span>(<b>More Colors See</b>: <a href="colors.html">Flat UI Color Picker</a>)</span>
+                      <span><a th:href="@{/disponibles?name=} + ${name}" href="#">Ver más...</a></span>
                     </h2>
                     <div class="row">
 	                    <table>
@@ -101,7 +101,7 @@
 
                   <div class="content-row">
                     <h2 class="content-row-title">Lotes Reservados
-                      <span>(<b>More Colors See</b>: <a href="colors.html">Flat UI Color Picker</a>)</span>
+                      <span><a th:href="@{/reservados?name=} + ${name}" href="#">Ver más...</a></span>
                     </h2>
                     <div class="row">
 	                    <table>
@@ -128,7 +128,7 @@
                   
                   <div class="content-row">
                     <h2 class="content-row-title">Lotes Vendidos
-                      <span>(<b>More Colors See</b>: <a href="colors.html">Flat UI Color Picker</a>)</span>
+                      <span><a th:href="@{/vendidos?name=} + ${name}" href="#">Ver más...</a></span>
                     </h2>
                     <div class="row">
 	                    <table>
