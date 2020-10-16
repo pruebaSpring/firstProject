@@ -1,80 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" style="margin:0px; height:100%;">
-  <head>
-    <meta charset="utf-8">
-    <title>Bootflat-Admin Template</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" href="favicon_16.ico"/>
-    <link rel="bookmark" href="favicon_16.ico"/>
-    <!-- site css -->
-    <link rel="stylesheet" href="../static/dist/css/site.min.css" th:href="@{/dist/css/site.min.css}">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
-    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
+	<head>
+		<meta charset="utf-8">
+			<title>Bootflat-Admin Template</title>
+			<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+				<link rel="shortcut icon" href="favicon_16.ico" />
+				<link rel="bookmark" href="favicon_16.ico" />
+				<!-- site css -->
+				<link rel="stylesheet" href="../static/dist/css/site.min.css" th:href="@{/dist/css/site.min.css}">
+					<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
+						<!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+						<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+						<!--[if lt IE 9]>
       <script src="../js/html5shiv.js" th:src="@{/js/html5shiv.js}"></script>
       <script src="../js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
     <![endif]-->
-    <script type="text/javascript" src="../static/dist/js/site.min.js" th:src="@{/dist/js/site.min.js}"></script>
-  </head>
-  <body style="margin:0px; height:100%;">
-    <!--nav-->
-    <nav role="navigation" class="navbar navbar-custom">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button data-target="#bs-content-row-navbar-collapse-5" data-toggle="collapse" class="navbar-toggle" type="button">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand" th:text="${name}"></a>
-          </div>
+						<script type="text/javascript" src="../static/dist/js/site.min.js" th:src="@{/dist/js/site.min.js}">
+						</script>
+					</head>
+					<body style="margin:0px; height:100%;">
+						<!--nav-->
+						<nav role="navigation" class="navbar navbar-custom">
+							<div class="container-fluid">
+								<!-- Brand and toggle get grouped for better mobile display -->
+								<div class="navbar-header">
+									<button data-target="#bs-content-row-navbar-collapse-5" data-toggle="collapse" class="navbar-toggle" type="button">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar">
+										</span>
+										<span class="icon-bar">
+										</span>
+										<span class="icon-bar">
+										</span>
+									</button>
+									<a href="#" class="navbar-brand" th:text="${name}">
+									</a>
+								</div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div id="bs-content-row-navbar-collapse-5" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <!--<li class="active"><a href="getting-started.html">Getting Started</a></li>
+								<!-- Collect the nav links, forms, and other content for toggling -->
+								<div id="bs-content-row-navbar-collapse-5" class="collapse navbar-collapse">
+									<ul class="nav navbar-nav navbar-right">
+										<!--<li class="active"><a href="getting-started.html">Getting Started</a></li>
               <li class="active"><a href="index.html">Documentation</a></li>-->
-              <!-- <li class="disabled"><a href="#">Link</a></li> -->
-              <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#" th:text="${name}">Silverbux <b class="caret"></b></a>
-                <ul role="menu" class="dropdown-menu">
-                  <li class="dropdown-header">Setting</li>
-                  <li class="divider"></li>
-                  <li class="active"><a href="/signOut">Signout</a></li>
-                  <li class="divider"></li>
-                </ul>
-              </li>
-            </ul>
+										<!-- <li class="disabled"><a href="#">Link</a></li> -->
+										<li class="dropdown">
+											<a data-toggle="dropdown" class="dropdown-toggle" href="#" th:text="${name}">Silverbux <b class="caret">
+												</b>
+											</a>
+											<ul role="menu" class="dropdown-menu">
+												<li class="dropdown-header">Setting</li>
+												<li class="divider">
+												</li>
+												<li class="active">
+													<a href="/signOut">Signout</a>
+												</li>
+												<li class="divider">
+												</li>
+											</ul>
+										</li>
+									</ul>
 
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-    <!--header-->
-    <div class="container-fluid" style="min-height: 70%;">
+								</div>
+								<!-- /.navbar-collapse -->
+							</div>
+							<!-- /.container-fluid -->
+						</nav>
+						<!--header-->
+						<div class="container-fluid" style="min-height: 70%;">
 
 
 
 
- <!--MODAL_test-->
-<div class="modal fade" id="modalFormDisponibles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <ul id="myTab1" class="nav nav-tabs nav-justified">
-          <li class="active"><a href="#Detalles" data-toggle="tab">Detalles</a></li>
-          <li><a href="#Reservar" data-toggle="tab">Reservar</a></li>
-        </ul>
-        <!--<h2 class="modal-title w-100 font-weight-bold">Reservar lote</h2>-->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-		<div id="myTabContent" class="tab-content">
-           <div class="tab-pane fade active in" id="Detalles">
-                  <!--<div class="modal-body mx-4">
+							<!--MODAL_test-->
+							<div class="modal fade" id="modalFormDisponibles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header text-center">
+											<ul id="myTab1" class="nav nav-tabs nav-justified">
+												<li class="active">
+													<a href="#Detalles" data-toggle="tab">Detalles</a>
+												</li>
+												<li>
+													<a href="#Reservar" data-toggle="tab">Reservar</a>
+												</li>
+											</ul>
+											<!--<h2 class="modal-title w-100 font-weight-bold">Reservar lote</h2>-->
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div id="myTabContent" class="tab-content">
+											<div class="tab-pane fade active in" id="Detalles">
+												<!--<div class="modal-body mx-4">
 			        <div class="row">
 			            <div class="col-xs-11">
 			              <p>Dato 1: </p>
@@ -90,62 +107,63 @@
 			            </div>      
 			        </div>
 			      </div>-->
-			      <div class="modal-body mx-4">
-				      <table class="table table-hover">
-	  					<thead></thead>
-	  					<tbody>
-		  						<tr>
-		  							<td>Precio: </td>
-		  							<td>precio</td>
-		  						</tr>
-		  						<tr>
-		  							<td>Medida: </td>
-		  							<td>medida</td>
-		  						</tr>
-		  						<tr>
-		  							<td>Locación: </td>
-		  							<td>locación</td>
-		  						</tr>
-		  						<tr>
-		  							<td>Precio: </td>
-		  							<td>medida</td>
-		  						</tr>
-	  					</tbody>
-					  </table>
-			      </div>
-           </div>
-           <div class="tab-pane fade" id="Reservar">
-               <form class="modal-body mx-4" role="form" action="/reserveLot" method="post">
-			      <div class="modal-body mx-4">
-			        <div class="row">
-			            <div class="col-xs-11">
-			              <input type="text" name="nameClient" class="form-control validate" placeholder="Nombres y apellidos" style="margin: 15px;">
-			            </div>
-			            <div class="col-xs-11">
-			              <input type="email" name="mailClient" class="form-control validate" placeholder="Coreo electrónico" style="margin: 15px;">
-			            </div>
-			            <div class="col-xs-11">
-			              <input type="text" name="operation" class="form-control validate" placeholder="Número de operación" style="margin: 15px;">
-			            </div>
-			            <div class="col-xs-11">
-			              <input type="date" name="date" class="form-control validate" placeholder="Fecha" style="margin: 15px;">
-			            </div>      
-			        </div>
-					<div class="modal-footer d-flex justify-content-center">
-			        	<button class="btn btn-deep-orange">Reservar</button>
-			        </div>
-			      </div>
-				</form>
-           </div>
-        </div>
+												<div class="modal-body mx-4">
+													<table class="table table-hover">
+														<thead>
+														</thead>
+														<tbody>
+															<tr>
+																<td>Precio: </td>
+																<td>precio</td>
+															</tr>
+															<tr>
+																<td>Medida: </td>
+																<td>medida</td>
+															</tr>
+															<tr>
+																<td>Locación: </td>
+																<td>locación</td>
+															</tr>
+															<tr>
+																<td>Precio: </td>
+																<td>medida</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="Reservar">
+												<form class="modal-body mx-4" role="form" action="/reserveLot" method="post">
+													<div class="modal-body mx-4">
+														<div class="row">
+															<div class="col-xs-11">
+																<input type="text" name="nameClient" class="form-control validate" placeholder="Nombres y apellidos" style="margin: 15px;">
+																</div>
+																<div class="col-xs-11">
+																	<input type="email" name="mailClient" class="form-control validate" placeholder="Coreo electrónico" style="margin: 15px;">
+																	</div>
+																	<div class="col-xs-11">
+																		<input type="text" name="operation" class="form-control validate" placeholder="Número de operación" style="margin: 15px;">
+																		</div>
+																		<div class="col-xs-11">
+																			<input type="date" name="date" class="form-control validate" placeholder="Fecha" style="margin: 15px;">
+																			</div>
+																		</div>
+																		<div class="modal-footer d-flex justify-content-center">
+																			<button class="btn btn-deep-orange">Reservar</button>
+																		</div>
+																	</div>
+																</form>
+															</div>
+														</div>
 
-	    
-      
-    </div>
-  </div>
-</div>
 
-<!--<div class="text-center">
+
+													</div>
+												</div>
+											</div>
+
+											<!--<div class="text-center">
   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
     Modal Register Form</a>
 </div>
@@ -154,301 +172,177 @@
 
 
 
-    <!--documents-->
-        <div class="row row-offcanvas row-offcanvas-left">
-          <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
-            <ul class="list-group panel">
-                <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>SIDE PANEL</b></li>
-                <li class="list-group-item"><input type="text" class="form-control search-query" placeholder="Search Something"></li>
-                <li class="list-group-item"><a th:href="@{/index/{name}/{type}(name = ${name}, type = ${type})}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
-                <li class="list-group-item"><a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a></li>
-                <li class="list-group-item"><a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
-                <li class="list-group-item active"><a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
-                <!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
-              </ul>
-          </div>
-          <div class="col-xs-12 col-sm-9 content">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a> Panel Title</h3>
-              </div>
-              <div class="panel-body">
-              	
-              	<div class="content-row">
-                    <h2 class="content-row-title">Lotes Disponibles</h2>
-                    <div class="row">
-	                    <table>
-	                        <tr th:each="availableLot : ${availableLots}">
-								<a href="#" data-toggle="modal" data-target="#modalFormDisponibles"/>
-			                      <div class="col-md-2">
-			                        <div class="color-swatches">
-			                          <div class="swatches">
-			                            <div class="clearfix">
-			                              <div style="background-color:#5D9CEC" class="pull-left light"></div>
-			                              <div style="background-color:#4A89DC" class="pull-right dark"></div>
-			                            </div>
-			                            <div class="infos">
-			                              <h4 th:text="${availableLot.amount}"></h4>
-			                              <p th:text="${availableLot.measure}"></p>
-			                              <p th:text="${availableLot.location}"></p>
-			                            </div>
-			                          </div>
-			                        </div>
+											<!--documents-->
+											<div class="row row-offcanvas row-offcanvas-left">
+												<div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
+													<ul class="list-group panel">
+														<li class="list-group-item">
+															<i class="glyphicon glyphicon-align-justify">
+															</i>
+															<b>PANEL DE CONTROL</b>
+														</li>
+														<li class="list-group-item">
+															</li>
+															<li class="list-group-item">
+																<a th:href="@{/index/{name}/{type}(name = ${name}, type = ${type})}" href="index.html">
+																	<i class="glyphicon glyphicon-home">
+																	</i>Dashboard </a>
+															</li>
+															<li class="list-group-item">
+																<a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}" href="reservados.html">
+																	<i class="glyphicon glyphicon-certificate">
+																	</i>Reservados </a>
+															</li>
+															<li class="list-group-item">
+																<a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="vendidos.html">
+																	<i class="glyphicon glyphicon-th-list">
+																	</i>Vendidos </a>
+															</li>
+															<li class="list-group-item active">
+																<a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html">
+																	<i class="glyphicon glyphicon-list-alt">
+																	</i>Disponibles</a>
+															</li>
+															<!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
+														</ul>
+													</div>
+													<div class="col-xs-12 col-sm-9 content">
+														<div class="panel panel-default">
+															<div class="panel-heading">
+																<h3 class="panel-title">
+																	<a href="javascript:void(0);" class="toggle-sidebar">
+																		<span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel">
+																		</span>
+																	</a>Información</h3>
+															</div>
+															<div class="panel-body">
 
-		                      </div>
-	                       </tr> 
-	                    </table>
-                     </div>
-                </div>
+																<div class="content-row">
+																	<h2 class="content-row-title">Lotes Disponibles</h2>
+																	<div class="row">
+																		<table>
+																			<tr th:each="availableLot : ${availableLots}">
+																				<a href="#" data-toggle="modal" data-target="#modalFormDisponibles" />
+																				<div class="col-md-2">
+																					<div class="color-swatches">
+																						<div class="swatches">
+																							<div class="clearfix">
+																								<div style="background-color:#5D9CEC" class="pull-left light">
+																								</div>
+																								<div style="background-color:#4A89DC" class="pull-right dark">
+																								</div>
+																							</div>
+																							<div class="infos">
+																								<h4 th:text="${availableLot.amount}">
+																								</h4>
+																								<p th:text="${availableLot.measure}">
+																								</p>
+																								<p th:text="${availableLot.location}">
+																								</p>
+																							</div>
+																						</div>
+																					</div>
 
-                <div class="content-row">
+																				</div>
+																			</tr>
+																		</table>
+																	</div>
+																</div>
 
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <div class="panel-title"><b>Create Form</b>
-                      </div>
+																<div class="content-row">
+																	<div class="panel panel-default">
+																		<div class="panel-heading">
+																			<div class="panel-title">
+																				<b>Registro de nuevo lote</b>
+																			</div>
 
-                      <div class="panel-options">
-                        <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a>
-                        <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a>
-                        <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a>
-                      </div>
-                    </div>
+																			<div class="panel-options">
+																				<a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal">
+																					<i class="entypo-cog">
+																					</i>
+																				</a>
+																				<a data-rel="collapse" href="#">
+																					<i class="entypo-down-open">
+																					</i>
+																				</a>
+																				<a data-rel="close" href="#!/tasks" ui-sref="Tasks">
+																					<i class="entypo-cancel">
+																					</i>
+																				</a>
+																			</div>
+																		</div>
 
-                    <div class="panel-body">
-                      <form novalidate="" role="form" class="form-horizontal">
-                        <div class="form-group">
-                          <label class="col-md-2 control-label">Title</label>
-                          <div class="col-md-10">
-                            <input type="text" required="" placeholder="Title" id="title" class="form-control" name="title">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-md-2 control-label">Subject</label>
-                          <div class="col-md-10">
-                            <input type="text" required="" placeholder="Subject" id="subject" class="form-control" name="title">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-md-2 control-label" for="description">Description</label>
-                          <div class="col-md-10">
-                            <textarea required="" class="form-control" placeholder="Description" rows="10" cols="30" id="description" name="description"></textarea>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="col-md-offset-2 col-md-10">
-                            <button class="btn btn-info" type="submit">Submit</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
+																		<div class="panel-body">
+																			<form novalidate="" role="form" class="form-horizontal">
+																				<div class="form-group">
+																					<label class="col-md-2 control-label">Precio del lote</label>
+																					<div class="col-md-10">
+																						<input type="text" required="" placeholder="Ingrese el precio de venta" id="price" class="form-control" name="price">
+																						<div class="col-md-10">																						
+																							<select name="Moneda" class="form-group">
+																								<option value="PEN">PEN</option>
+																								<option value="USD">USD</option>
+																								<option value="other">Other</option>
+																							</select>
+																						</div>
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label class="col-md-2 control-label">Localización</label>
+																					<div class="col-md-10">
+																						<input type="text" required="" placeholder="Ingrese la localización del lote" id="localization" class="form-control" name="localization">
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label class="col-md-2 control-label">Fecha</label>
+																					<div class="col-md-10">
+																						<input type="date" required="" placeholder="Ingrese la fecha de adquisición" id="date" class="form-control" name="date">
+																					</div>
+																				</div>
+																				<div class="form-group">
+																					<label class="col-md-2 control-label">Observaciones</label>
+																					<div class="col-md-10">
+																						<input type="text" required="" placeholder="Ingrese algún dato adicional acerca del lote" id="date" class="form-control" name="observations">
+																					</div>
+																				</div>
 
-                </div>
-
-
-                <div class="content-row">
-
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <div class="panel-title"><b>Create Form</b>
-                      </div>
-
-                      <div class="panel-options">
-                        <a class="bg" data-target="#sample-modal-dialog-1" data-toggle="modal" href="#sample-modal"><i class="entypo-cog"></i></a>
-                        <a data-rel="collapse" href="#"><i class="entypo-down-open"></i></a>
-                        <a data-rel="close" href="#!/tasks" ui-sref="Tasks"><i class="entypo-cancel"></i></a>
-                      </div>
-                    </div>
-
-                    <div class="panel-body">
-                      <form role="form">
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputFile">File input</label>
-                          <input type="file" id="exampleInputFile">
-                          <p class="help-block">Example block-level help text here.</p>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox">Check me out
-                          </label>
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                      </form>
-                    </div>
-                  </div>
-
-                </div>
-
-
-
-                <div class="content-row">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h2 class="content-row-title">Forms</h2>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <input type="text" placeholder="Text input" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" placeholder="Text input" disabled="" class="form-control">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <textarea rows="3" class="form-control"></textarea>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="input-group">
-                                <span class="input-group-addon">$</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon">.00</span>
-                              </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <br>
-                            <div class="col-md-12">
-                              <div class="input-group">
-                                <div class="input-group-btn">
-                                  <button tabindex="-1" class="btn btn-danger" type="button">Action</button>
-                                  <button tabindex="-1" data-toggle="dropdown" class="btn btn-danger dropdown-toggle" type="button">
-                                                          <span class="caret"></span>
-                                                        </button>
-                                  <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                  </ul>
-                                </div>
-                                <input type="text" class="form-control">
-                                <div class="input-group-btn">
-                                  <button tabindex="-1" class="btn btn-primary" type="button">Action</button>
-                                  <button tabindex="-1" data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">
-                                                          <span class="caret"></span>
-                                                        </button>
-                                  <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-search search-only">
-                            <i class="search-icon glyphicon glyphicon-search"></i>
-                            <input type="text" class="form-control search-query">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="input-group form-search">
-                            <input type="text" class="form-control search-query">
-                            <span class="input-group-btn">
-                              <button data-type="last" class="btn btn-primary" type="submit">Search</button>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="form-group has-success has-feedback">
-                            <label for="inputSuccess2" class="control-label">Input with success</label>
-                            <input type="text" id="inputSuccess2" class="form-control">
-                            <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group has-warning has-feedback">
-                            <label for="inputWarning2" class="control-label">Input with warning</label>
-                            <input type="text" id="inputWarning2" class="form-control">
-                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group has-error has-feedback">
-                            <label for="inputError2" class="control-label">Input with error</label>
-                            <input type="text" id="inputError2" class="form-control">
-                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+																						
+																				<div class="form-group">
+																					<div class="col-md-offset-2 col-md-10">
+																					<button class="btn btn-info" type="submit">Registrar</button>
+																				</div>
+																			</div>
+																			</form>
+																				</div>
+																			</div>
+																		</div>
 
 
-                <div class="content-row">
-                  <div class="row content-row-modal">
-                    <div class="col-md-6">
-                      <h2 class="content-row-title">Modals</h2>
-                      <div class="modal">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                              <h4 class="modal-title">Contact</h4>
-                            </div>
-                            <div class="modal-body">
-                              <p>Feel free to contact us for any issues you might have with our products.</p>
-                              <div class="row">
-                                <div class="col-xs-6">
-                                  <label>Name</label>
-                                  <input type="text" class="form-control" placeholder="Name">
-                                </div>
-                                <div class="col-xs-6">
-                                  <label>Email</label>
-                                  <input type="text" class="form-control" placeholder="Email">
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-xs-12">
-                                  <label>Message</label>
-                                  <textarea class="form-control" rows="3">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac</textarea>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-success">Send</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+																		
 
-                  </div>
-                </div>
-              </div><!-- panel body -->
-            </div>
-        </div><!-- content -->
-      </div>
-    </div>
-    <!--footer-->
-    <div class="site-footer">
-      <div class="container">
-        <div class="copyright clearfix">
-          <p><b>Bootflat</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;<a href="index.html">Documentation</a>&nbsp;&bull;&nbsp;<a href="https://github.com/Bootflat/Bootflat.UI.Kit.PSD/archive/master.zip">Free PSD</a>&nbsp;&bull;&nbsp;<a href="colors.html">Color Picker</a></p>
-          <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.</p>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+																			
+
+
+
+																																	<!-- panel body -->
+																																</div>
+																															</div>
+																															<!-- content -->
+																														</div>
+																													</div>
+																													<!--footer-->
+
+																													<div class="site-footer">
+<!--
+																														<div class="container">
+																															<div class="copyright clearfix">
+																																<p>
+																																	<b>Bootflat</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;<a href="index.html">Documentation</a>&nbsp;&bull;&nbsp;<a href="https://github.com/Bootflat/Bootflat.UI.Kit.PSD/archive/master.zip">Free PSD</a>&nbsp;&bull;&nbsp;<a href="colors.html">Color Picker</a>
+																																</p>
+																																<p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.</p>
+																															</div>
+																														</div>
+																														-->
+																													</div>
+																												</body>
+																											</html>
