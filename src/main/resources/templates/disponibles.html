@@ -176,35 +176,13 @@
 											<div class="row row-offcanvas row-offcanvas-left">
 												<div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
 													<ul class="list-group panel">
-														<li class="list-group-item">
-															<i class="glyphicon glyphicon-align-justify">
-															</i>
-															<b>PANEL DE CONTROL</b>
-														</li>
-														<li class="list-group-item">
-															</li>
-															<li class="list-group-item">
-																<a th:href="@{/index/{name}/{type}(name = ${name}, type = ${type})}" href="index.html">
-																	<i class="glyphicon glyphicon-home">
-																	</i>Dashboard </a>
-															</li>
-															<li class="list-group-item">
-																<a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}" href="reservados.html">
-																	<i class="glyphicon glyphicon-certificate">
-																	</i>Reservados </a>
-															</li>
-															<li class="list-group-item">
-																<a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="vendidos.html">
-																	<i class="glyphicon glyphicon-th-list">
-																	</i>Vendidos </a>
-															</li>
-															<li class="list-group-item active">
-																<a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html">
-																	<i class="glyphicon glyphicon-list-alt">
-																	</i>Disponibles</a>
-															</li>
-															<!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
-														</ul>
+										                <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>PANEL DE CONTROL</b></li>
+										                <li class="list-group-item"><a th:href="@{/index/{name}/{type}(name = ${name}, type = ${type})}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
+										                <li class="list-group-item"><a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a></li>
+										                <li class="list-group-item active"><a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
+										                <li class="list-group-item"><a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
+										                <!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
+										              </ul>
 													</div>
 													<div class="col-xs-12 col-sm-9 content">
 														<div class="panel panel-default">
