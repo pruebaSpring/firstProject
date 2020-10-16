@@ -29,7 +29,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                </button>
-               <a href="#" class="navbar-brand" th:text="${name}"></a>
+               <!--<a href="#" class="navbar-brand" th:text="${type}"></a>-->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,12 +39,9 @@
               <li class="active"><a href="index.html">Documentation</a></li>-->
                   <!-- <li class="disabled"><a href="#">Link</a></li> -->
                   <li class="dropdown">
-                     <a data-toggle="dropdown" class="dropdown-toggle" href="#" th:text="${name}">Silverbux <b class="caret"></b></a>
+                     <a data-toggle="dropdown" class="dropdown-toggle" href="#" th:text="'Usuario: ' + ${name}"></a>
                      <ul role="menu" class="dropdown-menu">
-                        <li class="dropdown-header">Setting</li>
-                        <li class="divider"></li>
-                        <li class="active"><a href="/signOut">Signout</a></li>
-                        <li class="divider"></li>
+                        <li class="dropdown-header active"><a href="/signOut">Salir</a></li>
                      </ul>
                   </li>
                </ul>
@@ -73,7 +70,9 @@
                   <li class="list-group-item">
                      <a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a>
                   </li>
-                  <!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
+                  <li class="list-group-item" th:if="${type == '00'}">
+                  	<a th:href="@{/registro/{name}/{type}(name = ${name}, type = ${type})}" href="registro.html" ><i class="glyphicon glyphicon-tint"></i>Registrar lote</a>
+                  </li>
                </ul>
             </div>
             <div class="col-xs-12 col-sm-9 content">
@@ -86,7 +85,7 @@
                   <div class="panel-body">
                      <div class="content-row">
                         <h2 class="content-row-title">Lotes Reservados</h2>
-                        <div class="row">
+                        <div class="row" th:if="!${#lists.isEmpty(reservedLots)}">
                            <table>
                               <tr th:each="reservedLot : ${reservedLots}">
                                  <a href="#" data-toggle="modal" th:attr="data-target='#customerModel'+${reservedLot.location}"/>
@@ -143,6 +142,17 @@
                                  
                               </tr>
                            </table>
+                        </div>
+                        <div class="row" th:if="${#lists.isEmpty(reservedLots)}">
+                                 <div class="col-md-2">
+                                    <div class="color-swatches">
+                                       <div class="swatches">
+                                          <div class="infos">
+                                             <h4>Aún no se cuenta con lotes reservados.</h4>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
                         </div>
                      </div>
 

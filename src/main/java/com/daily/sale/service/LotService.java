@@ -19,24 +19,25 @@ import com.mongodb.client.model.Filters;
 @Service
 public class LotService {
 
-	public List<List<Lots>> getAll(MongoClient mongoClient) {
+	public List<List<Lots>> getAll(MongoClient mongoClient, String type) {
 		List<Lots> reservedList = new ArrayList<>();
 		List<Lots> soldList = new ArrayList<>();
 		List<Lots> availableList = new ArrayList<>();
-//		String user = "admin";
-//		String pass = "qFqW2Xpukwpzb5qg";
-//		String host = "clusterspringexample.q1vcv.mongodb.net";
-//		String dbName = "dbTEST";
-//		String port = "27017";
-//		String uriComplete= "mongodb+srv://"+user+":"+pass+"@"+host+"/"+dbName+"?retryWrites=true&w=majority";
-//
-//		MongoClientURI uri = new MongoClientURI(uriComplete);
-//		MongoClient mongo = new MongoClient(uri);
 		MongoDatabase mongoDatabase = mongoClient.getDatabase(IDatabases.DB_TEST);
 		MongoCollection<Document> collection = mongoDatabase.getCollection(IDBCollections.LOTS);
 		System.out.println("Connect to database successfully");
 		
-		MongoCursor<Document> result = collection.find().iterator();
+		MongoCursor<Document> result;
+		
+		if(!type.equalsIgnoreCase("00")) {
+			Bson filter = Filters.and(
+					Filters.eq("UserType", type)
+					);
+			result = collection.find(filter).iterator();
+		}
+		else {
+			result = collection.find().iterator();
+		}
 		
 		List<List<Lots>> lots = new ArrayList<>();
 		while (result.hasNext()) {
@@ -70,23 +71,24 @@ public class LotService {
 		return lots;
 	}
 
-	public List<Lots> getAvailables(MongoClient mongoClient) {
-//		String user = "admin";
-//		String pass = "qFqW2Xpukwpzb5qg";
-//		String host = "clusterspringexample.q1vcv.mongodb.net";
-//		String dbName = "dbTEST";
-//		String port = "27017";
-//		String uriComplete= "mongodb+srv://"+user+":"+pass+"@"+host+"/"+dbName+"?retryWrites=true&w=majority";
-//
-//		MongoClientURI uri = new MongoClientURI(uriComplete);
-//		MongoClient mongo = new MongoClient(uri);
+	public List<Lots> getAvailables(MongoClient mongoClient, String type) {
 		MongoDatabase mongoDatabase = mongoClient.getDatabase(IDatabases.DB_TEST);
 		MongoCollection<Document> collection = mongoDatabase.getCollection(IDBCollections.LOTS);
 		System.out.println("Connect to database successfully");
 		
-		Bson filter = Filters.and(
-				Filters.eq("Status.Status", "Available")
-				);
+		Bson filter;
+		
+		if(!type.equalsIgnoreCase("00")) {
+			filter = Filters.and(
+					Filters.eq("Status.Status", "Available"),
+					Filters.eq("UserType", type)
+					);
+		}
+		else {
+			filter = Filters.and(
+					Filters.eq("Status.Status", "Available")
+					);
+		}
 		
 		MongoCursor<Document> result = collection.find(filter).iterator();
 		
@@ -103,23 +105,24 @@ public class LotService {
 		return lots;
 	}
 
-	public List<Lots> getSolds(MongoClient mongoClient) {
-//		String user = "admin";
-//		String pass = "qFqW2Xpukwpzb5qg";
-//		String host = "clusterspringexample.q1vcv.mongodb.net";
-//		String dbName = "dbTEST";
-//		String port = "27017";
-//		String uriComplete= "mongodb+srv://"+user+":"+pass+"@"+host+"/"+dbName+"?retryWrites=true&w=majority";
-//
-//		MongoClientURI uri = new MongoClientURI(uriComplete);
-//		MongoClient mongo = new MongoClient(uri);
+	public List<Lots> getSolds(MongoClient mongoClient, String type) {
 		MongoDatabase mongoDatabase = mongoClient.getDatabase(IDatabases.DB_TEST);
 		MongoCollection<Document> collection = mongoDatabase.getCollection(IDBCollections.LOTS);
 		System.out.println("Connect to database successfully");
 		
-		Bson filter = Filters.and(
-				Filters.eq("Status.Status", "Sold")
-				);
+		Bson filter;
+		
+		if(!type.equalsIgnoreCase("00")) {
+			filter = Filters.and(
+					Filters.eq("Status.Status", "Sold"),
+					Filters.eq("UserType", type)
+					);
+		}
+		else {
+			filter = Filters.and(
+					Filters.eq("Status.Status", "Sold")
+					);
+		}
 		
 		MongoCursor<Document> result = collection.find(filter).iterator();
 		
@@ -136,23 +139,24 @@ public class LotService {
 		return lots;
 	}
 
-	public List<Lots> getReserveds(MongoClient mongoClient) {
-//		String user = "admin";
-//		String pass = "qFqW2Xpukwpzb5qg";
-//		String host = "clusterspringexample.q1vcv.mongodb.net";
-//		String dbName = "dbTEST";
-//		String port = "27017";
-//		String uriComplete= "mongodb+srv://"+user+":"+pass+"@"+host+"/"+dbName+"?retryWrites=true&w=majority";
-//
-//		MongoClientURI uri = new MongoClientURI(uriComplete);
-//		MongoClient mongo = new MongoClient(uri);
+	public List<Lots> getReserveds(MongoClient mongoClient, String type) {
 		MongoDatabase mongoDatabase = mongoClient.getDatabase(IDatabases.DB_TEST);
 		MongoCollection<Document> collection = mongoDatabase.getCollection(IDBCollections.LOTS);
 		System.out.println("Connect to database successfully");
 		
-		Bson filter = Filters.and(
-				Filters.eq("Status.Status", "Reserved")
-				);
+		Bson filter;
+		
+		if(!type.equalsIgnoreCase("00")) {
+			filter = Filters.and(
+					Filters.eq("Status.Status", "Reserved"),
+					Filters.eq("UserType", type)
+					);
+		}
+		else {
+			filter = Filters.and(
+					Filters.eq("Status.Status", "Reserved")
+					);
+		}
 		
 		MongoCursor<Document> result = collection.find(filter).iterator();
 		

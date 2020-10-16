@@ -52,7 +52,7 @@ public class Controlador {
 		if(user != null) {
 			model.addAttribute("name", user.getName());
 			model.addAttribute("type", user.getType());
-			List<List<Lots>> lots = lotService.getAll(mongoClient);
+			List<List<Lots>> lots = lotService.getAll(mongoClient, user.getType());
 			model.addAttribute("reservedLots", lots.get(0));
 			model.addAttribute("soldLots", lots.get(1));
 			model.addAttribute("availableLots", lots.get(2));
@@ -71,7 +71,7 @@ public class Controlador {
 
 	@GetMapping("/index/{name}/{type}")
 	public String dashboard(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
-		List<List<Lots>> lots = lotService.getAll(mongoClient);
+		List<List<Lots>> lots = lotService.getAll(mongoClient, type);
 		model.addAttribute("reservedLots", lots.get(0));
 		model.addAttribute("soldLots", lots.get(1));
 		model.addAttribute("availableLots", lots.get(2));
@@ -82,7 +82,7 @@ public class Controlador {
 
 	@GetMapping("/reservados/{name}/{type}")
 	public String reservados(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
-		List<Lots> reservedLots = lotService.getReserveds(mongoClient);
+		List<Lots> reservedLots = lotService.getReserveds(mongoClient, type);
 		model.addAttribute("reservedLots", reservedLots);
 		model.addAttribute("name", name);
 		model.addAttribute("type", type);
@@ -91,7 +91,7 @@ public class Controlador {
 
 	@GetMapping("/vendidos/{name}/{type}")
 	public String vendidos(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
-		List<Lots> soldLots = lotService.getSolds(mongoClient);
+		List<Lots> soldLots = lotService.getSolds(mongoClient, type);
 		model.addAttribute("soldLots", soldLots);
 		model.addAttribute("name", name);
 		model.addAttribute("type", type);
@@ -100,7 +100,7 @@ public class Controlador {
 
 	@GetMapping("/disponibles/{name}/{type}")
 	public String disponibles(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
-		List<Lots> availableLots = lotService.getAvailables(mongoClient);
+		List<Lots> availableLots = lotService.getAvailables(mongoClient, type);
 		model.addAttribute("availableLots", availableLots);
 		model.addAttribute("name", name);
 		model.addAttribute("type", type);
@@ -109,17 +109,17 @@ public class Controlador {
 
 	@GetMapping("/data/{amount}")
 	public String getData(@PathVariable("amount") Double amount, Model model) {
-		List<Lots> availableLots = lotService.getAvailables(mongoClient);
-		model.addAttribute("availableLots", availableLots);
-		model.addAttribute("amount", amount);
+//		List<Lots> availableLots = lotService.getAvailables(mongoClient);
+//		model.addAttribute("availableLots", availableLots);
+//		model.addAttribute("amount", amount);
 		return "vendidos :: modalContents";
 	}
 
-	@GetMapping("/colors")
-	public String colors(Model model) {
+	@GetMapping("/registro/{name}/{type}")
+	public String registro(@PathVariable("name") String name, @PathVariable("type") String type, Model model) {
 		//		List<Persona> personas = service.listar();
 		//		model.addAttribute("personas", personas);
-		return "colors";
+		return "registro";
 	}
 
 
