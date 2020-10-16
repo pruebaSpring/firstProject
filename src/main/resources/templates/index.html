@@ -1,287 +1,291 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" style="margin:0px; height:100%;">
-  <head>
-    <meta charset="utf-8">
-    <title>Bootflat-Admin Template</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" href="favicon_16.ico"/>
-    <link rel="bookmark" href="favicon_16.ico"/>
-    <!-- site css -->
-    <link rel="stylesheet" href="../static/dist/css/site.min.css" th:href="@{/dist/css/site.min.css}">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
-    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="../js/html5shiv.js" th:src="@{/js/html5shiv.js}"></script>
-      <script src="../js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../static/dist/js/site.min.js" th:src="@{/dist/js/site.min.js}"></script>
-  </head>
-  <body style="margin:0px; height:100%;">
-    <!--nav-->
-    <nav role="navigation" class="navbar navbar-custom">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button data-target="#bs-content-row-navbar-collapse-5" data-toggle="collapse" class="navbar-toggle" type="button">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand" th:text="${type}"></a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div id="bs-content-row-navbar-collapse-5" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <!--<li class="active"><a href="getting-started.html">Getting Started</a></li>
-              <li class="active"><a href="index.html">Documentation</a></li>-->
-              <!-- <li class="disabled"><a href="#">Link</a></li> -->
-              <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#" th:text="${name}">Silverbux <b class="caret"></b></a>
-                <ul role="menu" class="dropdown-menu">
-                  <li class="dropdown-header">Setting</li>
-                  <li class="divider"></li>
-                  <li class="active"><a href="/signOut">Signout</a></li>
-                  <li class="divider"></li>
-                </ul>
-              </li>
-            </ul>
-
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-    <!--header-->
-    <div class="container-fluid" style="min-height: 70%;">
-    <!--documents-->
-        <div class="row row-offcanvas row-offcanvas-left">
-          <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
-            <ul class="list-group panel">
-                <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>PANEL DE CONTROL</b></li>
-                <li class="list-group-item active"><a th:href="@{/index/{name}/{type}(name = ${name}, type = ${type})}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
-                <li class="list-group-item"><a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a></li>
-                <li class="list-group-item"><a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a></li>
-                <li class="list-group-item"><a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a></li>
-                <!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
-              </ul>
-          </div>
-          <div class="col-xs-12 col-sm-9 content">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a> Panel Title</h3>
-              </div>
-              <div class="panel-body">
-                  <div class="content-row">
-                    <h2 class="content-row-title">Lotes Disponibles
-                      <span><a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="#">Ver más...</a></span>
-                    </h2>
-                    <div class="row">
-	                    <table>
-	                        <tr th:each="availableLot : ${availableLots}">
-		                      <div class="col-md-2">
-		                        <div class="color-swatches">
-		                          <div class="swatches">
-		                            <div class="clearfix">
-		                              <div style="background-color:#5D9CEC" class="pull-left light"></div>
-		                              <div style="background-color:#4A89DC" class="pull-right dark"></div>
-		                            </div>
-		                            <div class="infos">
-		                              <h4 th:text="${availableLot.amount}"></h4>
-		                              <p th:text="${availableLot.measure}"></p>
-		                              <p th:text="${availableLot.location}"></p>
-		                            </div>
-		                          </div>
-		                        </div>
-		                      </div>
-	                       </tr> 
-	                    </table>
-                     </div>
-                  </div>
-
-                  <div class="content-row">
-                    <h2 class="content-row-title">Lotes Reservados
-                      <span><a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}">Ver más...</a></span>
-                    </h2>
-                    <div class="row">
-	                    <table>
-	                        <tr th:each="reservedLot : ${reservedLots}">
-		                      <div class="col-md-2">
-		                        <div class="color-swatches">
-		                          <div class="swatches">
-		                            <div class="clearfix">
-		                              <div style="background-color:#FFCE54" class="pull-left light"></div>
-		                              <div style="background-color:#F6BB42" class="pull-right dark"></div>
-		                            </div>
-		                            <div class="infos">
-		                              <h4 th:text="${reservedLot.amount}"></h4>
-		                              <p th:text="${reservedLot.measure}"></p>
-		                              <p th:text="${reservedLot.location}"></p>
-		                            </div>
-		                          </div>
-		                        </div>
-		                      </div>
-	                       </tr> 
-	                    </table>
-                     </div>
-                  </div>
-                  
-                  <div class="content-row">
-                    <h2 class="content-row-title">Lotes Vendidos
-                      <span><a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="#">Ver más...</a></span>
-                    </h2>
-                    <div class="row">
-	                    <table>
-	                        <tr th:each="soldLot : ${soldLots}">
-		                      <div class="col-md-2">
-		                        <div class="color-swatches">
-		                          <div class="swatches">
-		                            <div class="clearfix">
-		                              <div style="background-color:#FC6E51" class="pull-left light"></div>
-		                              <div style="background-color:#E9573F" class="pull-right dark"></div>
-		                            </div>
-		                            <div class="infos">
-		                              <h4 th:text="${soldLot.amount}"></h4>
-		                              <p th:text="${soldLot.measure}"></p>
-		                              <p th:text="${soldLot.location}"></p>
-		                            </div>
-		                          </div>
-		                        </div>
-		                      </div>
-	                       </tr> 
-	                    </table>
-                     </div>
-                  </div>
-                  
-
-                </div>
-                </div>
-                </div>
-
-                <!-- Jumbotron
-                                ================================================== 
-                <div class="content-row">
-                  <h2 class="content-row-title">Jumbotron</h2>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="jumbotron">
-                        <div class="jumbotron-photo">
-                          <img src="dist/img/Jumbotron.jpg" />
-                        </div>
-                        <div class="jumbotron-contents">
-                          <h1>Implementing the HTML and CSS into your user interface project</h1>
-                          <h2>HTML Structure</h2>
-                          <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                          <h2>CSS Structure</h2>
-                          <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="jumbotron">
-                        <div id="carousel-content-row-generic" class="carousel slide" data-ride="carousel">
-                          <ol class="carousel-indicators">
-                            <li data-target="#carousel-content-row-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-content-row-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-content-row-generic" data-slide-to="2"></li>
-                          </ol>
-                          <div class="carousel-inner">
-                            <div class="item active">
-                              <img src="dist/img/slider1.jpg">
-                            </div>
-                            <div class="item">
-                              <img src="dist/img/slider2.jpg">
-                            </div>
-                            <div class="item">
-                              <img src="dist/img/slider3.jpg">
-                            </div>
-                          </div>
-                          <a class="left carousel-control" href="#carousel-content-row-generic" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                          </a>
-                          <a class="right carousel-control" href="#carousel-content-row-generic" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                          </a>
-                        </div>
-                        <div class="jumbotron-contents">
-                          <h1>Implementing the HTML and CSS into your user interface project</h1>
-                          <h2>HTML Structure</h2>
-                          <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                          <h2>CSS Structure</h2>
-                          <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>-->
-                <!-- Thumbnails
-                                ================================================== 
-                <div class="content-row">
-                  <h2 class="content-row-title">Thumbnails</h2>
-                  <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                      <div class="thumbnail">
-                        <img class="img-rounded" src="dist/img/thumbnail-1.jpg">
-                        <div class="caption text-center">
-                          <h3>Thumbnail label</h3>
-                          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
-                          <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                      <div class="thumbnail">
-                        <img class="img-rounded" src="dist/img/thumbnail-2.jpg">
-                        <div class="caption text-center">
-                          <h3>Thumbnail label</h3>
-                          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
-                          <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                      <div class="thumbnail">
-                        <img class="img-rounded" src="dist/img/thumbnail-3.jpg">
-                        <div class="caption text-center">
-                          <h3>Thumbnail label</h3>
-                          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
-                          <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                      <div class="thumbnail">
-                        <img class="img-rounded" src="dist/img/thumbnail-4.jpg">
-                        <div class="caption text-center">
-                          <h3>Thumbnail label</h3>
-                          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
-                          <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>-->
-                
-                
-              </div><!-- panel body -->
+<html xmlns:th="http://www.thymeleaf.org" style="margin: 0px; height: 100%;">
+   <head>
+      <meta charset="utf-8" />
+      <title>Bootflat-Admin Template</title>
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+      <link rel="shortcut icon" href="favicon_16.ico" />
+      <link rel="bookmark" href="favicon_16.ico" />
+      <!-- site css -->
+      <link rel="stylesheet" href="../static/dist/css/site.min.css" th:href="@{/dist/css/site.min.css}" />
+      <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css" />
+      <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+      <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+      <!--[if lt IE 9]>
+         <script src="../js/html5shiv.js" th:src="@{/js/html5shiv.js}"></script>
+         <script src="../js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
+      <![endif]-->
+      <script type="text/javascript" src="../static/dist/js/site.min.js" th:src="@{/dist/js/site.min.js}"></script>
+   </head>
+   <body style="margin: 0px; height: 100%;">
+      <!--nav-->
+      <nav role="navigation" class="navbar navbar-custom">
+         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <button data-target="#bs-content-row-navbar-collapse-5" data-toggle="collapse" class="navbar-toggle" type="button">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </button>
+               <a href="#" class="navbar-brand" th:text="${type}"></a>
             </div>
-        </div><!-- content -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-content-row-navbar-collapse-5" class="collapse navbar-collapse">
+               <ul class="nav navbar-nav navbar-right">
+                  <!--<li class="active"><a href="getting-started.html">Getting Started</a></li>
+                     <li class="active"><a href="index.html">Documentation</a></li>-->
+                  <!-- <li class="disabled"><a href="#">Link</a></li> -->
+                  <li class="dropdown">
+                     <a data-toggle="dropdown" class="dropdown-toggle" href="#" th:text="${name}">Silverbux <b class="caret"></b></a>
+                     <ul role="menu" class="dropdown-menu">
+                        <li class="dropdown-header">Setting</li>
+                        <li class="divider"></li>
+                        <li class="active"><a href="/signOut">Signout</a></li>
+                        <li class="divider"></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </div>
+         <!-- /.container-fluid -->
+      </nav>
+      <!--header-->
+      <div class="container-fluid" style="min-height: 70%;">
+         <!--documents-->
+         <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
+               <ul class="list-group panel">
+                  <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>PANEL DE CONTROL</b></li>
+                  <li class="list-group-item active">
+                     <a th:href="@{/index/{name}/{type}(name = ${name}, type = ${type})}" href="index.html"><i class="glyphicon glyphicon-home"></i>Dashboard </a>
+                  </li>
+                  <li class="list-group-item">
+                     <a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}" href="reservados.html"><i class="glyphicon glyphicon-certificate"></i>Reservados </a>
+                  </li>
+                  <li class="list-group-item">
+                     <a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="vendidos.html"><i class="glyphicon glyphicon-th-list"></i>Vendidos </a>
+                  </li>
+                  <li class="list-group-item">
+                     <a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="disponibles.html"><i class="glyphicon glyphicon-list-alt"></i>Disponibles</a>
+                  </li>
+                  <!--<li class="list-group-item"><a th:href="@{/colors}" href="colors.html" ><i class="glyphicon glyphicon-tint"></i>Colors</a></li>-->
+               </ul>
+            </div>
+            <div class="col-xs-12 col-sm-9 content">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">
+                        <a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>Información
+                     </h3>
+                  </div>
+                  <div class="panel-body">
+                     <div class="content-row">
+                        <h2 class="content-row-title">
+                           Lotes Disponibles
+                           <span><a th:href="@{/disponibles/{name}/{type}(name = ${name}, type = ${type})}" href="#">Ver más...</a></span>
+                        </h2>
+                        <div class="row">
+                           <table>
+                              <tr th:each="availableLot : ${availableLots}">
+                                 <div class="col-md-2">
+                                    <div class="color-swatches">
+                                       <div class="swatches">
+                                          <div class="clearfix">
+                                             <div style="background-color: #5d9cec;" class="pull-left light"></div>
+                                             <div style="background-color: #4a89dc;" class="pull-right dark"></div>
+                                          </div>
+                                          <div class="infos">
+                                             <h4 th:text="${availableLot.amount}"></h4>
+                                             <p th:text="${availableLot.measure}"></p>
+                                             <p th:text="${availableLot.location}"></p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </tr>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="content-row">
+                        <h2 class="content-row-title">
+                           Lotes Reservados
+                           <span><a th:href="@{/reservados/{name}/{type}(name = ${name}, type = ${type})}">Ver más...</a></span>
+                        </h2>
+                        <div class="row">
+                           <table>
+                              <tr th:each="reservedLot : ${reservedLots}">
+                                 <div class="col-md-2">
+                                    <div class="color-swatches">
+                                       <div class="swatches">
+                                          <div class="clearfix">
+                                             <div style="background-color: #ffce54;" class="pull-left light"></div>
+                                             <div style="background-color: #f6bb42;" class="pull-right dark"></div>
+                                          </div>
+                                          <div class="infos">
+                                             <h4 th:text="${reservedLot.amount}"></h4>
+                                             <p th:text="${reservedLot.measure}"></p>
+                                             <p th:text="${reservedLot.location}"></p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </tr>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="content-row">
+                        <h2 class="content-row-title">
+                           Lotes Vendidos
+                           <span><a th:href="@{/vendidos/{name}/{type}(name = ${name}, type = ${type})}" href="#">Ver más...</a></span>
+                        </h2>
+                        <div class="row">
+                           <table>
+                              <tr th:each="soldLot : ${soldLots}">
+                                 <div class="col-md-2">
+                                    <div class="color-swatches">
+                                       <div class="swatches">
+                                          <div class="clearfix">
+                                             <div style="background-color: #fc6e51;" class="pull-left light"></div>
+                                             <div style="background-color: #e9573f;" class="pull-right dark"></div>
+                                          </div>
+                                          <div class="infos">
+                                             <h4 th:text="${soldLot.amount}"></h4>
+                                             <p th:text="${soldLot.measure}"></p>
+                                             <p th:text="${soldLot.location}"></p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </tr>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Jumbotron
+               ================================================== 
+               <div class="content-row">
+               <h2 class="content-row-title">Jumbotron</h2>
+               <div class="row">
+               <div class="col-md-6">
+               <div class="jumbotron">
+               <div class="jumbotron-photo">
+               <img src="dist/img/Jumbotron.jpg" />
+               </div>
+               <div class="jumbotron-contents">
+               <h1>Implementing the HTML and CSS into your user interface project</h1>
+               <h2>HTML Structure</h2>
+               <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+               <h2>CSS Structure</h2>
+               <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+               </div>
+               </div>
+               </div>
+               <div class="col-md-6">
+               <div class="jumbotron">
+               <div id="carousel-content-row-generic" class="carousel slide" data-ride="carousel">
+               <ol class="carousel-indicators">
+               <li data-target="#carousel-content-row-generic" data-slide-to="0" class="active"></li>
+               <li data-target="#carousel-content-row-generic" data-slide-to="1"></li>
+               <li data-target="#carousel-content-row-generic" data-slide-to="2"></li>
+               </ol>
+               <div class="carousel-inner">
+               <div class="item active">
+               <img src="dist/img/slider1.jpg">
+               </div>
+               <div class="item">
+               <img src="dist/img/slider2.jpg">
+               </div>
+               <div class="item">
+               <img src="dist/img/slider3.jpg">
+               </div>
+               </div>
+               <a class="left carousel-control" href="#carousel-content-row-generic" data-slide="prev">
+               <span class="glyphicon glyphicon-chevron-left"></span>
+               </a>
+               <a class="right carousel-control" href="#carousel-content-row-generic" data-slide="next">
+               <span class="glyphicon glyphicon-chevron-right"></span>
+               </a>
+               </div>
+               <div class="jumbotron-contents">
+               <h1>Implementing the HTML and CSS into your user interface project</h1>
+               <h2>HTML Structure</h2>
+               <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+               <h2>CSS Structure</h2>
+               <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+               </div>
+               </div>
+               </div>
+               </div>
+               </div>-->
+            <!-- Thumbnails
+               ================================================== 
+               <div class="content-row">
+               <h2 class="content-row-title">Thumbnails</h2>
+               <div class="row">
+               <div class="col-sm-6 col-md-3">
+               <div class="thumbnail">
+               <img class="img-rounded" src="dist/img/thumbnail-1.jpg">
+               <div class="caption text-center">
+               <h3>Thumbnail label</h3>
+               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
+               <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
+               </p>
+               </div>
+               </div>
+               </div>
+               <div class="col-sm-6 col-md-3">
+               <div class="thumbnail">
+               <img class="img-rounded" src="dist/img/thumbnail-2.jpg">
+               <div class="caption text-center">
+               <h3>Thumbnail label</h3>
+               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
+               <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
+               </p>
+               </div>
+               </div>
+               </div>
+               <div class="col-sm-6 col-md-3">
+               <div class="thumbnail">
+               <img class="img-rounded" src="dist/img/thumbnail-3.jpg">
+               <div class="caption text-center">
+               <h3>Thumbnail label</h3>
+               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
+               <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
+               </p>
+               </div>
+               </div>
+               </div>
+               <div class="col-sm-6 col-md-3">
+               <div class="thumbnail">
+               <img class="img-rounded" src="dist/img/thumbnail-4.jpg">
+               <div class="caption text-center">
+               <h3>Thumbnail label</h3>
+               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id ...</p>
+               <p><a href="#" class="btn btn-warning" role="button">Button</a>  <a href="#" class="btn btn-default" role="button">Button</a>
+               </p>
+               </div>
+               </div>
+               </div>
+               </div>
+               </div>-->
+         </div>
+         <!-- panel body -->
       </div>
-    </div>
-    <!--footer-->
-    <div class="site-footer">
-	<!--
-      <div class="container">
-        <div class="copyright clearfix">
-          <p><b>Bootflat</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;<a href="index.html">Documentation</a>&nbsp;&bull;&nbsp;<a href="https://github.com/Bootflat/Bootflat.UI.Kit.PSD/archive/master.zip">Free PSD</a>&nbsp;&bull;&nbsp;<a href="colors.html">Color Picker</a></p>
-          <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.</p>
-        </div>
+      <!--footer-->
+      <div class="site-footer">
+         <!--
+            <div class="container">
+              <div class="copyright clearfix">
+                <p><b>Bootflat</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="getting-started.html">Getting Started</a>&nbsp;&bull;&nbsp;<a href="index.html">Documentation</a>&nbsp;&bull;&nbsp;<a href="https://github.com/Bootflat/Bootflat.UI.Kit.PSD/archive/master.zip">Free PSD</a>&nbsp;&bull;&nbsp;<a href="colors.html">Color Picker</a></p>
+                <p>Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.</p>
+              </div>
+            </div>
+            -->
       </div>
-      -->
-    </div>
-  </body>
+   </body>
 </html>
