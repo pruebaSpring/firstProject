@@ -173,7 +173,7 @@
                         <div class="row">
                            <table>
                               <tr th:each="soldLot : ${soldLots}">
-                                 <a href="#" data-toggle="modal" data-target="#modalFormDisponibles" />
+                                 <a href="#" data-toggle="modal" th:attr="data-target='#customerModel'+${soldLot.location}"/>
                                  <div class="col-md-2">
                                     <div class="color-swatches">
                                        <div class="swatches">
@@ -189,6 +189,42 @@
                                        </div>
                                     </div>
                                  </div>
+                                 
+                                 <!--MODAL_test-->
+									<div class="modal fade" th:id="${'customerModel'+{soldLot.location}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header text-center">
+									        <ul id="myTab1" class="nav nav-tabs nav-justified">
+									          <li class="active"><a href="#Detalles" data-toggle="tab"><h4 class="modal-title w-100 font-weight-bold">Detalles</h4></a></li>
+									          <!--<li><a href="#Reservar" data-toggle="tab">Reservar</a></li>-->
+									        </ul>
+									        <!--<h4 class="modal-title w-100 font-weight-bold">Detalles</h4>-->
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      
+											<div id="myTabContent" class="tab-content">
+									           <div class="tab-pane fade active in" id="Detalles">
+												      <div class="modal-body mx-4 row">
+													      <ul class="list-group table-hover col-md-6">
+															  <li class="list-group-item">Localización:</li>
+															  <li class="list-group-item">Medida:</li>
+															  <li class="list-group-item">Precio:</li>
+															</ul>
+													      <ul class="list-group table-hover col-md-6">
+															  <li class="list-group-item" th:text="${soldLot.location}">Cras justo odio</li>
+															  <li class="list-group-item" th:text="${soldLot.measure}">Dapibus ac facilisis in</li>
+															  <li class="list-group-item" th:text="${soldLot.amount}">Morbi leo risus</li>
+															</ul>
+												      </div>
+									           </div>
+									        </div>
+									      </div>
+						           		</div>
+						        	</div>
+                                 
                               </tr>
                            </table>
                         </div>
